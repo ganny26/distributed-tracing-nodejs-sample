@@ -1,0 +1,37 @@
+{
+  "name": "signoz-nodejs-distributed",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "payment": "ts-node-dev ./src/payment-service",
+    "users": "ts-node-dev ./src/user-service",
+    "orders": "ts-node-dev ./src/order-service"
+  },
+  "author": "Selvaganesh Rajam <selvaganeshrajam@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@opentelemetry/api": "^1.0.3",
+    "@opentelemetry/auto-instrumentations-node": "^0.25.0",
+    "@opentelemetry/exporter-collector": "0.25.0",
+    "@opentelemetry/exporter-collector-grpc": "^0.25.0",
+    "@opentelemetry/exporter-otlp-grpc": "^0.26.0",
+    "@opentelemetry/resources": "^0.24.0",
+    "@opentelemetry/sdk-trace-base": "^1.0.1",
+    "@opentelemetry/sdk-trace-node": "^1.0.1",
+    "@opentelemetry/semantic-conventions": "^0.24.0",
+    "@types/axios": "^0.14.0",
+    "@types/express": "^4.17.13",
+    "@opentelemetry/sdk-node": "0.27.0",
+    "@types/node": "^17.0.17",
+    "@types/sequelize": "4.28.11",
+    "axios": "^0.25.0",
+    "dotenv": "^16.0.0",
+    "express": "^4.17.2",
+    "mysql2": "^2.3.3",
+    "opentelemetry-instrumentation-express": "0.27.0",
+    "sequelize": "^6.16.1",
+    "ts-node-dev": "^1.1.8",
+    "typescript": "^4.5.5"
+  }
+}
