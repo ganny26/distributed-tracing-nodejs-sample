@@ -11,7 +11,7 @@ app.use((request, response, next) => {
   next()
 })
 
-app.get('/payment/transfer/:id', async (req, res) => {
+app.get('/payment/transfer/id/:id', async (req, res) => {
   try {
     if (!!req.query.amount) {
       axios

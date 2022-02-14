@@ -28,10 +28,14 @@ initializeDB((mysql: any) => {
             const paymentData = {
               AMOUNT: parseInt(AMOUNT) - parseInt(req.body.PRICE),
             }
-
             let order = await db.OrdersTable.create(orderPayload)
             let updateBalance = await db.UserTable.update(paymentData,{where:{ID:req.body.USER_ID}})
             res.send(order)
+          }).catch(err=>{
+            const activeSpan = api.trace.getSpan(api.context.active())
+            console.error(`Critical error`, { traceId: activeSpan.spanContext().traceId })
+            activeSpan.recordException(err.message)
+            res.sendStatus(500)
           })
         } else {
           throw new Error('Amount is required')
