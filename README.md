@@ -17,7 +17,7 @@ Spin up the services
 API calls
 
 - localhost:8081/user/create (POST)
-- localhost:8080/payment/transfer/4?amount=9999 (GET)
+- localhost:8080/payment/transfer/id/5?amount=500 (GET)
 - localhost:8082/order/create (POST)
 
 View traces, logs and metrics:
