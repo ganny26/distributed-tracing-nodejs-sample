@@ -3,13 +3,15 @@ import * as opentelemetry from '@opentelemetry/sdk-node'
 import { SemanticResourceAttributes } from '@opentelemetry/semantic-conventions'
 const { getNodeAutoInstrumentations } = require('@opentelemetry/auto-instrumentations-node')
 const { OTLPTraceExporter } = require('@opentelemetry/exporter-otlp-grpc')
+const { MySQL2Instrumentation } = require('@opentelemetry/instrumentation-mysql2')
+
 const init = function (serviceName: string) {
   // Define traces
   const traceExporter = new OTLPTraceExporter({})
 
   const sdk = new opentelemetry.NodeSDK({
     traceExporter,
-    instrumentations: [getNodeAutoInstrumentations()],
+    instrumentations: [getNodeAutoInstrumentations(), new MySQL2Instrumentation()],
     resource: new Resource({
       [SemanticResourceAttributes.SERVICE_NAME]: serviceName,
     }),
