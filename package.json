@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "payment": "ts-node-dev ./src/payment-service",
-    "users": "ts-node-dev ./src/user-service",
-    "orders": "ts-node-dev ./src/order-service"
+    "payment": "OTEL_EXPORTER_OTLP_ENDPOINT=127.0.0.1:4317 OTEL_RESOURCE_ATTRIBUTES=service.name=PaymentService ts-node-dev -r ./src/tracer.ts ./src/payment-service.ts",
+    "users": "OTEL_EXPORTER_OTLP_ENDPOINT=127.0.0.1:4317 OTEL_RESOURCE_ATTRIBUTES=service.name=UserService ts-node-dev -r ./src/tracer.ts ./src/user-service.ts",
+    "orders": "OTEL_EXPORTER_OTLP_ENDPOINT=127.0.0.1:4317 OTEL_RESOURCE_ATTRIBUTES=service.name=OrderService ts-node-dev -r ./src/tracer.ts ./src/order-service.ts"
   },
   "author": "Selvaganesh Rajam <selvaganeshrajam@gmail.com>",
   "license": "MIT",
