@@ -5,11 +5,13 @@ import * as api from '@opentelemetry/api'
 import axios from 'axios'
 import * as express from 'express'
 import { db, initializeDB } from './model'
+import * as cors from 'cors'
 
 initializeDB((mysql: any) => {
   console.log('db initialized')
   mysql.sequelize.sync().then(() => {
     const app = express()
+    app.use(cors())
     app.use(express.json())
     app.use(express.urlencoded({ extended: false }))
     //Create order

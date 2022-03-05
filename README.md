@@ -14,11 +14,17 @@ Spin up the services
 - `npm run payment`
 - `npm run orders`
 
-API calls
+# How to view traces:
 
-- localhost:8081/user/create (POST)
-- localhost:8080/payment/transfer/id/5?amount=500 (GET)
-- localhost:8082/order/create (POST)
+Use below UI application to generate some traces into signoz
+```
+npm install -g serve
+serve ui
+
+```
+
+Open http://localhost:3000/
+
 
 View traces, logs and metrics:
 
