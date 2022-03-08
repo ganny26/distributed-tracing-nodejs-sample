@@ -1,3 +1,9 @@
+// Application urls
+const DEFAULT_SIGNOZ_URL = 'http://localhost:3301/application'
+const USER_SERVICE_URL = 'http://localhost:8081/user'
+const PAYMENT_SERVICE_URL = 'http://localhost:8080/payment'
+const ORDER_SERVICE_URL = 'http://localhost:8082/order'
+// Components
 const Title = (props) => <p>{props.label}</p>
 const Response = (props) => <pre>{JSON.stringify(props.result, null, 4)}</pre>
 const ProductDD = (props) => {
@@ -15,6 +21,7 @@ const App = () => {
   let [payment, setPayment] = React.useState()
   let [order, setOrder] = React.useState()
   let [product, setProduct] = React.useState()
+  let [signozUrl, setSignozUrl] = React.useState(DEFAULT_SIGNOZ_URL)
   let createUser = async () => {
     try {
       const requestOptions = {
@@ -25,7 +32,7 @@ const App = () => {
           ACCOUNT: 'ABCDE1234F',
         }),
       }
-      let response = await fetch('http://localhost:8081/user/create', requestOptions)
+      let response = await fetch(`${USER_SERVICE_URL}/create`, requestOptions)
       let result = await response.json()
       setUser(result)
       console.log(result)
@@ -48,7 +55,7 @@ const App = () => {
       method: 'GET',
     }
     let response = await fetch(
-      `http://localhost:8080/payment/transfer/id/${user.ID}?amount=10000`,
+      `${PAYMENT_SERVICE_URL}/transfer/id/${user.ID}?amount=10000`,
       requestOptions
     )
     let result = await response.json()
@@ -67,7 +74,7 @@ const App = () => {
         PRICE: product.PRICE,
       }),
     }
-    let response = await fetch('http://localhost:8082/order/create', requestOptions)
+    let response = await fetch(`${ORDER_SERVICE_URL}/create`, requestOptions)
     let result = await response.json()
     setOrder(result)
     console.log(result)
@@ -78,13 +85,22 @@ const App = () => {
     setOrder()
     setProduct()
   }
-  let openSignoz = () => window.open('http://localhost:3301/application')
+  let setUrl = (e) => setSignozUrl(e.target.value)
+  let openSignoz = () => window.open(signozUrl)
   return (
     <div>
       <button onClick={handleReset}>Reset Actions</button>
-      <button onClick={openSignoz} style={{ marginLeft: 10 }}>
+      <button onClick={openSignoz} style={{ marginLeft: 10, marginRight: 8 }}>
         Open Signoz
       </button>
+      <input
+        placeholder="Type default signoz url"
+        type="text"
+        onChange={setUrl}
+        value={signozUrl}
+        style={{ width: 200 }}
+      ></input>
+      <p style={{ color: 'red' }}>Make sure signoz is running on {signozUrl}</p>
       <Title label="1.User Creation"></Title>
       <button onClick={createUser}>Create User</button>
       <Response result={user} />
