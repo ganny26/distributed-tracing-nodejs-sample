@@ -4,9 +4,10 @@ import 'dotenv/config'
 import * as api from '@opentelemetry/api'
 import axios from 'axios'
 import * as express from 'express'
+import * as cors from 'cors'
 
 const app = express()
-
+app.use(cors())
 app.use((request, response, next) => {
   next()
 })
