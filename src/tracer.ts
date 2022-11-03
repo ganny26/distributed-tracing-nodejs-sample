@@ -1,8 +1,9 @@
-import { Resource } from '@opentelemetry/resources'
-import * as opentelemetry from '@opentelemetry/sdk-node'
-import { SemanticResourceAttributes } from '@opentelemetry/semantic-conventions'
-const { getNodeAutoInstrumentations } = require('@opentelemetry/auto-instrumentations-node')
-const { OTLPTraceExporter } = require('@opentelemetry/exporter-otlp-grpc')
+import { getNodeAutoInstrumentations } from '@opentelemetry/auto-instrumentations-node';
+import { OTLPTraceExporter } from '@opentelemetry/exporter-trace-otlp-http';
+import { Resource } from '@opentelemetry/resources';
+import * as opentelemetry from '@opentelemetry/sdk-node';
+import { SemanticResourceAttributes } from '@opentelemetry/semantic-conventions';
+
 const init = function (serviceName: string) {
   // Define traces
   const traceExporter = new OTLPTraceExporter({})
@@ -13,7 +14,7 @@ const init = function (serviceName: string) {
     resource: new Resource({
       [SemanticResourceAttributes.SERVICE_NAME]: serviceName,
     }),
-  })
+  });
 
   sdk
     .start()
@@ -22,7 +23,6 @@ const init = function (serviceName: string) {
 
   // You can also use the shutdown method to gracefully shut down the SDK before process shutdown
   // or on some operating system signal.
-  const process = require('process')
   process.on('SIGTERM', () => {
     sdk
       .shutdown()

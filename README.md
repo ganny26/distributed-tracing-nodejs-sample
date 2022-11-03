@@ -20,7 +20,6 @@ Use below UI application to generate some traces into signoz
 ```
 npm install -g serve
 serve ui
-
 ```
 
 Open http://localhost:3000/
