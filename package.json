@@ -11,9 +11,10 @@
   "author": "Selvaganesh Rajam <selvaganeshrajam@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "@opentelemetry/auto-instrumentations-node": "^0.33.1",
-    "@opentelemetry/exporter-trace-otlp-http": "^0.33.0",
-    "@opentelemetry/sdk-node": "^0.33.0",
+    "@opentelemetry/api": "^1.4.1",
+    "@opentelemetry/auto-instrumentations-node": "^0.36.6",
+    "@opentelemetry/exporter-trace-otlp-http": "^0.38.0",
+    "@opentelemetry/sdk-node": "^0.38.0",
     "@types/axios": "^0.14.0",
     "@types/express": "^4.17.13",
     "@types/node": "^17.0.17",

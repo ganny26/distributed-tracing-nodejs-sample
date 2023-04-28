@@ -16,10 +16,7 @@ const init = function (serviceName: string) {
     }),
   });
 
-  sdk
-    .start()
-    .then(() => console.log('Tracing initialized'))
-    .catch((error) => console.log('Error initializing tracing', error))
+  sdk.start();
 
   // You can also use the shutdown method to gracefully shut down the SDK before process shutdown
   // or on some operating system signal.
